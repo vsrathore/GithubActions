@@ -16,7 +16,8 @@ jobs:
       run: |
         jso=$(cat Jao.json | jq -c '.repo|@json')
         echo $jso
-        echo "::set-output name=matrix::{\"include\":${jso:1: -1}}"
+        jjso='{\"include\":$jso}'
+        echo "::set-output name=matrix::$jjso"
 
   job22:
     runs-on: ubuntu-latest
