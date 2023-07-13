@@ -16,7 +16,7 @@ jobs:
       run: |
         jso=$(cat Jao.json | jq -c '.repo[]|[.d , .f]')
         echo $jso
-        echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+        echo "::set-output name=matrix::{\"include\":$jso}"
   job2:
     needs: job1
     runs-on: ubuntu-latest
