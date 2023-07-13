@@ -6,10 +6,16 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
+    
+    - name: Checkout the repository
+      uses: actions/checkout@v3
+      
+          
+    
     - id: set-matrix
       run: |
-        k=$(cat Jao.json)
-        echo $k
+        jso=$(cat Jao.json | jq -c '.variables')
+        echo $jso
         echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
   job2:
     needs: job1
