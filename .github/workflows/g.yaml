@@ -17,7 +17,7 @@ jobs:
         jso=$(cat Jao.json | jq -c '.repo|@json')
         echo $jso
         jjso='{\"include\":'${jso:1: -1}'}'
-        echo "::set-output name=matrix::$(jjso|jq)"
+        echo "::set-output name=matrix::${jjso}"
 
   job22:
     runs-on: ubuntu-latest
@@ -29,6 +29,6 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+      matrix: ${{ fromJson(needs.job1.outputs.matrix )}}
     steps:
     - run: build
