@@ -14,7 +14,7 @@ jobs:
     
     - id: set-matrix
       run: |
-        jso=$(cat Jao.json | jq -c '.repo[]|@json')
+        jso=$(cat Jao.json | jq -c '.repo[]|[.d , .f]|@json')
         echo $jso
         echo "::set-output name=matrix::$jso"
 
