@@ -16,7 +16,7 @@ jobs:
       run: |
         jso=$(cat Jao.json | jq -c '.repo|@json')
         echo $jso
-        jjso='{\"include\":$jso}'
+        jjso='{\"include\":${jso}}'
         echo "::set-output name=matrix::$jjso"
 
   job22:
